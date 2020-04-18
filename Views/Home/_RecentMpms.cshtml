@@ -1,0 +1,47 @@
+﻿@model  List<Models.Mpm>
+<ul class="list-group clear-list m-t">
+    @foreach (var item in Model.Select((Value, Index) => new { Index, Value }))
+    {
+        <li class="list-group-item fist-item">
+            <span class="pull-right">
+                @item.Value.Type
+            </span>
+            <span class="label label-info">
+            @{ 
+                int index = item.Index+1 ;
+            }    
+            @index
+            </span> @item.Value.Location
+        </li>
+    }
+    @*<li class="list-group-item fist-item">
+            <span class="pull-right">
+                Massive Sulfide
+            </span>
+            <span class="label label-success">1</span> Bafgh, Yazd, Iran
+        </li>
+        <li class="list-group-item">
+            <span class="pull-right">
+                SEDEX
+            </span>
+            <span class="label label-info">2</span> Esfordi,Yazd, Iran
+        </li>
+        <li class="list-group-item">
+            <span class="pull-right">
+                Gold deposit
+            </span>
+            <span class="label label-primary">3</span> Khoonik, Khorasan, Iran
+        </li>
+        <li class="list-group-item">
+            <span class="pull-right">
+                Copper deposit
+            </span>
+            <span class="label label-default">4</span> Now Chun,Kerman, Iran
+        </li>
+        <li class="list-group-item">
+            <span class="pull-right">
+                Iron Oxide Copper Gold
+            </span>
+            <span class="label label-primary">5</span> Taher Abad, Khorasan, Iran
+        </li>*@
+</ul>

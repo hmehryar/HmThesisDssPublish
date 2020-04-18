@@ -1,0 +1,47 @@
+﻿@model Models.Product
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3>آیا از حذف کردن، مطمئن هستید؟</h3>
+                </div>
+                <div class="panel-body">
+                    <h4>محصول</h4>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Title)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Image)
+                        </dt>
+
+                        <dd>
+                            <img class="img-responsive" src="@Model.Image" />
+                        </dd>
+
+
+                    </dl>
+                    @using (Html.BeginForm())
+            {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="حذف" class="btn btn-danger" />
+
+                        </div>
+                    }
+                </div>
+                <div class="panel-footer">
+                    @Html.ActionLink("بازگشت به لیست", "Index")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

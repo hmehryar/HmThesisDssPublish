@@ -1,0 +1,106 @@
+﻿@model Models.FactorItem
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "factorProductItemChoice" }))
+{
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
+        <h4 class="modal-title">Adding Criterium Item to Cluster</h4>
+    </div>
+    <div class="modal-body">
+        @Html.AntiForgeryToken()
+        <p id="MessageToClient" class="text-danger"></p>
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.FactorGroupId)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CriteriumItem.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CriteriumItem.Name, new
+               {
+                   htmlAttributes = new
+                   {
+                       @class = "ui-autocomplete-input form-control",
+                       data_url = Url.Action("GetCriteriumItemsForAutocomplete", "CriteriumItem")
+                   }
+               })
+                    @Html.ValidationMessageFor(model => model.CriteriumItem.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @* ToDo Must get unit price from product *@
+            @*<div class="form-group">
+                    @Html.Label("Product_UnitPrice", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.Editor("Product_UnitPrice", new { htmlAttributes = new { @class = "form-control", @Value = "1200" } })
+                    </div>
+                </div>*@
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.Product.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Product.Name, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", onchange = "recalculateFactorItem()" } })
+                    @Html.ValidationMessageFor(model => model.Product.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.Product.UnitPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Product.UnitPrice, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", onchange = "recalculateFactorItem()" } })
+                    @Html.ValidationMessageFor(model => model.Product.UnitPrice, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+            @Html.HiddenFor(model => model.CriteriumItemId)
+            @* ToDo Must get unit price from product *@
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.Product.UnitPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Product.UnitPrice, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly",@Value="1200" } })
+                        @Html.ValidationMessageFor(model => model.Product.UnitPrice, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control", onchange = "recalculateFactorItem()" } })
+                    @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.Tax, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Tax, new { htmlAttributes = new { @class = "form-control", onchange = "recalculateFactorItem()" } })
+                    @Html.ValidationMessageFor(model => model.Tax, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.ProductId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ProductId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ProductId, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.TotalPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TotalPrice, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </div>
+            </div>*@
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a class="btn btn-default" data-dissmiss="modal">Cancel</a>
+        <input class="btn btn-primary" type="submit" value="Add" />
+    </div>
+}
+

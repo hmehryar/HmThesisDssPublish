@@ -1,0 +1,56 @@
+﻿@model Models.DependencyFactorItem
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "dependencyFactorItemChoice" }))
+{
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
+        <h4 class="modal-title">Adding Dependency Factor Item to Cluster</h4>
+    </div>
+        <div class="modal-body">
+            @Html.AntiForgeryToken()
+            <p id="MessageToClient" class="text-danger"></p>
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.StartFactorGroupId)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ComparisonFactor.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ComparisonFactor.Name, new
+                   {
+                       htmlAttributes = new
+                       {
+                           @class = "ui-autocomplete-input form-control",
+                           data_url = Url.Action("GetFactorItemsForAutocomplete", "FactorItem")
+                       }
+                   })
+                        @Html.ValidationMessageFor(model => model.ComparisonFactor.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @Html.HiddenFor(model => model.ComparisonFactorId)
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ComparisonMatrix, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ComparisonMatrix, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ComparisonMatrix, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a class="btn btn-default" data-dissmiss="modal">Cancel</a>
+            <input class="btn btn-primary" type="submit" value="Add" />
+        </div>
+}

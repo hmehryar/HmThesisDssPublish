@@ -1,0 +1,181 @@
+﻿@model Models.Factor
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-8">
+        <h2>فاکتور</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Index", "Home")">Home</a>
+            </li>
+            <li>
+                مدیریت فاکتور
+            </li>
+            <li class="active">
+                <strong>فاکتور</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-4">
+        <div class="title-action">
+            <a href="@Url.Action("Edit", "Factor",new  {id=Model.Id })" class="btn btn-white"><i class="fa fa-pencil"></i> ویرایش</a>
+            <a href="@Url.Action("Index", "Factor",new  {id=Model.Id })" class="btn btn-white"><i class="fa fa-check "></i> ذخیره </a>
+            <a href="@Url.Action("invoicePrint", "Factor")" target="_blank" class="btn btn-primary"><i class="fa fa-print"></i> پرینت </a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="ibox-content p-xl">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h5>از:</h5>
+                        <address>
+                            <strong>شرکت نیوشا، ضیایی</strong><br>
+                            فلکه اول<br>
+                            استان البرز، فردیس<br>
+                            <abbr title="Phone">P:</abbr> (930) 339 8782
+                        </address>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <h4>شماره فاکتور</h4>
+                        <h4 class="text-navy">@Model.Code</h4>
+                        <span>به:</span>
+                        <address>
+                            <strong>@Model.Customer.Name</strong><br>
+                            @Model.Customer.Address
+                            <abbr title="Phone">P:</abbr> @Model.Customer.Tel
+                        </address>
+                        <p>
+                            <span><strong>تاریخ ثبت:</strong> @Model.CreationDate</span><br />
+                            <span><strong>تاریخ انجام:</strong> @Model.DueDate</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="table-responsive m-t">
+                    <table class="table invoice-table">
+                        <thead>
+                            <tr>
+                                <th>لیست اقلام</th>
+                                <th>تعداد</th>
+                                <th>قیمت واحد</th>
+                                <th>مالیات</th>
+                                <th>مبلغ کل</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.FactorProductItems)
+                            {
+                                <tr>
+                                    <td>
+                                        <div><strong>@item.Product.Name</strong></div>
+                                        <small>@item.Product.Description</small>
+                                    </td>
+                                    <td>@item.Quantity</td>
+                                    <td>@item.Product.UnitPrice</td>
+                                    <td>@item.Tax</td>
+                                    <td>@item.TotalPrice</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div><!-- /table-responsive -->
+                <table class="table invoice-total">
+                    <tbody>
+                        <tr>
+                            <td><strong>@Html.DisplayNameFor(model => model.SubTotal):</strong></td>
+                            <td>@Html.DisplayFor(model => model.SubTotal)</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>@Html.DisplayNameFor(model => model.Tax):</strong></td>
+                            <td>@Html.DisplayFor(model => model.Tax)</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>@Html.DisplayNameFor(model => model.Total):</strong></td>
+                            <td>@Html.DisplayFor(model => model.Total)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-right">
+                    <a href="@Url.Action("Pay", "Factor")" class="btn btn-primary"><i class="fa fa-dollar"></i> @Html.DisplayNameFor(model => model.IsPaid)</a>
+                </div>
+                <div class="well m-t">
+                    <strong>@Html.DisplayNameFor(model => model.Description)</strong>
+                    @Html.DisplayFor(model => model.Description)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<h4>جزئیات فاکتور</h4>
+    <hr />
+
+    <div class="col-md-12">
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.CustomerName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DisplayFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control" } })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DisplayFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DisplayFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+
+            <table class="table table-striped col-md-12" id="tblData" border="1" width="300">
+                <tr>
+                    <th>شناسه</th>
+
+                    <th>نام کالا</th>
+
+                    <th>تعداد</th>
+                    <th>
+                        قیمت واحد
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+                @if (Model != null)
+                {
+                    for (int i = 0; i < Model.FactorProductItems.Count; i++)
+                    {
+                        <tr>
+                            @Html.HiddenFor(current => Model.FactorProductItems[i].Id)
+                            <td>@(i + 1)</td>
+                            <td class="col-md-2">@Model.FactorProductItems[i].Product.Name </td>
+                            <td class="col-md-2">@Model.FactorProductItems[i].Quantity</td>
+                            <td class="col-md-2">@Model.FactorProductItems[i].Product.UnitPrice</td>
+                            <td></td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+
+    <div>
+        @Html.ActionLink("بازگشت به لیست فاکتورها", "Index")
+    </div>*@
+@*@section scripts{
+        <script type="text/javascript" src="~/scripts/factor.js"></script>
+    }*@
+
+

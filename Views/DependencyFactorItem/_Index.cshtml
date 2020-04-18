@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Models.DependencyFactorItem>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong> Dependency Factor Item List</strong>
+    </div>
+    <table class="table table-hover table-condensed">
+        <tr>
+
+            <th class=" col-md-1">
+                @Html.DisplayNameFor(model => model.ComparisonFactor.Name)
+            </th>
+            <th class=" col-md-1">
+                <a href="@Url.Action("Create", "DependencyFactorItem",
+                        new { factorGroupId = ViewBag.FactorGroupId })" class="btn  btn-xs btn-primary" data-modal="dependencyFactorItems">
+                    <i class="fa fa-plus"></i> Add
+                </a>
+            </th>
+        </tr>
+       
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class=" col-md-1">
+                        @Html.DisplayFor(modelItem => item.ComparisonFactor.CriteriumItem.Name)
+                    </td>
+                    <td class=" col-md-1">
+                        <a href="@Url.Action("Edit", "DependencyFactorItem",new  { id = item.Id, factorGroupId = ViewBag.FactorGroupId })" class="btn  btn-default btn-xs" data-modal="dependencyFactorItems"><i class="fa fa-pencil"></i> Edit</a>
+                        <a href="@Url.Action("Delete", "DependencyFactorItem",new  { id = item.Id, factorGroupId = ViewBag.FactorGroupId })" class="btn btn-danger  btn-xs" data-modal="dependencyFactorItems"><i class="fa fa-trash"></i> Delete</a>
+                    </td>
+                </tr>
+            }
+      
+    </table>
+</div>

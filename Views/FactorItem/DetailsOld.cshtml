@@ -1,0 +1,52 @@
+﻿@model Models.FactorItem
+    @{
+        ViewBag.Title = "FactorItem";
+    }
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>Details</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="/FactorItem">FactorItem</a>
+                </li>
+                <li class="active">
+                    <strong>Details</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+        </div>
+    </div>
+    <div class="panel panel-warning">
+        <div class="panel-heading">
+            <h4>Factor Item  </h4>
+        </div>
+        <div class="panel-body">
+            <dl class="dl-horizontal col-md-6">
+
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Symbol)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Symbol)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Image)
+                </dt>
+                <dd>
+                    <img class="img-responsive" width="400" src="@Model.Image"/>
+                </dd>
+            </dl>
+        </div>
+        <div class="panel-footer">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Return to List", "Index")
+        </div>
+    </div>

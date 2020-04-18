@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Models.DependencyFactorItem>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong> List of cluster dependency factor items</strong>
+    </div>
+    <table class="table table-hover table-condensed">
+        <tr>
+
+            <th class=" col-md-1">
+                @Html.DisplayNameFor(model => model.ComparisonFactor.Name)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class=" col-md-1">
+                    @Html.DisplayFor(modelItem => item.ComparisonFactor.Name)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

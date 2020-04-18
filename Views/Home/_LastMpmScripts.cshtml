@@ -1,0 +1,64 @@
+﻿@model Models.Mpm
+@Scripts.Render("~/plugins/chartJs")
+@Scripts.Render("~/plugins/peity")
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $(".bar_dashboard").peity("bar", {
+            fill: ["#1ab394", "#d7d7d7"],
+            width: 100
+        })
+
+        var lineData = {
+            labels: ["Geo.1", "Geo.2", "Geo.3", " Geochemistry",
+                "Alteration", "Dykes", "SDB", "RS", "Geology"],
+            datasets: [
+                {
+                    label: "It2H Hybrid",
+                    fillColor: "rgba(220,220,220,0.5)",
+                    strokeColor: "rgba(220,220,220,1)",
+                    pointColor: "rgba(220,220,220,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    //data: [143.373072, 108.198599, 74.730645,
+                    //    184.971312, 96.760323, 149.316726, 65.437489, 106.357776, 70.854059]
+                    data:@Html.Raw(Json.Encode( Model.Results[0].RankingItems)),
+                    },
+                {
+                    label: "AHP",
+                    fillColor: "rgba(26,179,148,0.5)",
+                    strokeColor: "rgba(26,179,148,0.7)",
+                    pointColor: "rgba(26,179,148,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(26,179,148,1)",
+                    //data: [147.718579, 102.052651, 94.193227, 17.6855517, 143.077609,
+                    //    100.639917, 60.077679, 10.2071691, 73.31313]
+                    data:@Html.Raw(Json.Encode(Model.Results[1].RankingItems)),
+                }
+            ]
+        };
+
+        var lineOptions = {
+            scaleShowGridLines: true,
+            scaleGridLineColor: "rgba(0,0,0,.05)",
+            scaleGridLineWidth: 1,
+            bezierCurve: true,
+            bezierCurveTension: 0.4,
+            pointDot: true,
+            pointDotRadius: 4,
+            pointDotStrokeWidth: 1,
+            pointHitDetectionRadius: 70,
+            datasetStroke: true,
+            datasetStrokeWidth: 2,
+            datasetFill: true,
+            responsive: true,
+        };
+
+
+        var ctx = document.getElementById("lineChart").getContext("2d");
+        var myNewChart = new Chart(ctx).Line(lineData, lineOptions);
+
+    });
+</script>

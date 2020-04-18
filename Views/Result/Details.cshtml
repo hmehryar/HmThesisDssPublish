@@ -1,0 +1,40 @@
+﻿@model Models.Result
+@{
+    ViewBag.Title = "MPM Results";
+}
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div>
+            <span class="pull-right text-right">
+                <small>Study area is located in: <strong>@Model.Mpm.Location</strong></small>
+                <br />
+                Mine occurences: @Model.Mpm.MineOccurenceCount
+            </span>
+            <h1 class="m-b-xs">@Model.Mpm.Type</h1>
+            <h3 class="font-bold no-margins">
+                @Model.Description
+            </h3>
+            @*<small>SEDEX type.</small>*@
+        </div>
+        
+        <div>
+            <canvas id="lineChart" height="70"></canvas>
+        </div>
+        <div class="m-t-md">
+            <small class="pull-right">
+                <i class="fa fa-clock-o"> </i>
+                Update on @Model.LastModifiedDate
+            </small>
+            @*<small>
+                <strong>Comparitive Analysis:</strong> @Model.Evaluation
+            </small>*@
+        </div>
+        <div>
+            <img class="img-responsive image-type" width="600" height="600" src="@Model.Data"/>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Html.Partial("_DetailsScripts", Model)
+}

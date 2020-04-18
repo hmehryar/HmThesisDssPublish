@@ -1,0 +1,106 @@
+﻿@model Models.FactorGroup
+@{
+    ViewBag.Title = "Delete Cluster";
+}
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>Are you sure to delete</h3>
+            <h2>
+                Delete cluster
+            </h2>
+            <hr />
+
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.IsActive)
+                @Html.HiddenFor(model => model.CreationDate)
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.Id)
+                @*@Html.HiddenFor(model => model.CustomerId)*@
+                @*@Html.HiddenFor(model => model.IsPaid)*@
+
+                <div class="form-group form-group-sm">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DisplayFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", disabled = "" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DisplayFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", disabled = "" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @*<div class="form-group form-group-sm">
+                        @Html.LabelFor(model => model.DueDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DisplayFor(model => model.DueDate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DueDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+                @*<div class="form-group form-group-sm">
+                        @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DisplayFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group form-group-sm">
+                        @Html.LabelFor(model => model.Tax, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DisplayFor(model => model.Tax, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Tax, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DisplayFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+                <div class="row">
+                    <div class="col-md-offset-2 col-md-10">
+                        @Html.Partial("~/Views/FactorItem/_List.cshtml", Model.FactorItems.AsEnumerable())
+                        @*@{Html.RenderAction("Index", "FactorGroupProductItem", new { factorId = Model.Id });}*@
+                    </div>
+                </div>
+                @*<div class="form-group form-group-sm">
+                        @Html.LabelFor(model => model.Total, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DisplayFor(model => model.Total, new { htmlAttributes = new { @class = "form-control", disabled = "" } })
+                            @Html.ValidationMessageFor(model => model.Tax, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group form-group-sm">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Delete" class="btn btn-danger" />
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

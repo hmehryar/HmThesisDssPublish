@@ -1,0 +1,64 @@
+﻿@model Models.FactorItem
+<div class="modal-header">
+    <a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
+    <h4 class="modal-title">Are you sure to delete this item from Cluster</h4>
+</div>
+<div class="modal-body">
+    <p id="MessageToClient" class="text-danger"></p>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Cluster Name")
+            @Html.DisplayNameFor(model => model.FactorGroup.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FactorGroup.Name)
+        </dd>
+        <dt>
+            @*@Html.DisplayNameFor(model => model.CriteriumItem.Name)*@
+            @Html.DisplayName("Criterium Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CriteriumItem.Name)
+        </dd>
+
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.Tax)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Tax)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TotalPrice)
+            </dd>*@
+
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "factorProductItemChoice" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-footer">
+        <a class="btn btn-default" data-dissmiss="modal">Cancel</a>
+        <input class="btn btn-danger" type="submit" value="Delete" />
+    </div>
+}
+

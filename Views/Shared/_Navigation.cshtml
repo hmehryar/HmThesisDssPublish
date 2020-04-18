@@ -1,0 +1,84 @@
+﻿<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                    <span>
+                        <img alt="image" class="img-circle" src="~/Images/defaults/default-user.png" />
+                    </span>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <span class="clear">
+                            <span class="block m-t-xs">
+                                <strong class="font-bold">Haydar Mehryar</strong>
+                            </span> <span class="text-muted text-xs block">System Architect <b class="caret"></b></span>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <li><a href="@Url.Action("User", "Details")">Profile</a></li>
+                        <li><a href="@Url.Action("Mpm", "Index")">Case Studies</a></li>
+                        <li><a href="@Url.Action("Mpm", "Result")">Results</a></li>
+                        <li class="divider"></li>
+                        <li>
+                            @*<a href="@Url.Action("LogOff", "Account")">Logout</a>*@
+                            <a href="javascript:document.getElementById('logoutForm').submit()">
+                         Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="logo-element">
+                    HMDSS
+                </div>
+            </li>
+            <li class="@Html.IsSelected(action: "Index",controller:"Home")">
+                <a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> <span class="nav-label">Home</span> </a>
+            </li>
+            <li class="@Html.IsSelected(controller:"Mpm")">
+                <a href="@Url.Action("Index", "Mpm")"><i class="fa fa-diamond"></i> <span class="nav-label">Mineral Prospectivity Mapping</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li class="@Html.IsSelected(controller:"Mpm",action: "Index")"><a href="@Url.Action("Index", "Mpm")">  <i class="fa fa-list"></i> List</a></li>
+                    <li class="@Html.IsSelected(controller:"Mpm",action: "Create")"><a href="@Url.Action("Create", "Mpm")"><i class="fa fa-plus"></i> Create</a></li>
+                    <li class="@Html.IsSelected(controller:"Mpm",action: "Edit")"><a href="@Url.Action("Edit", "Mpm")">    <i class="fa fa-edit"></i> Edit</a></li>
+                    <li class="@Html.IsSelected(controller:"Mpm",action: "Delete")"><a href="@Url.Action("Delete", "Mpm")"><i class="fa fa-trash"></i> Delete</a></li>
+                </ul>
+            </li>
+            <li class="@Html.IsSelected(controller:"DecisionMaking")">
+                <a href="@Url.Action("Index", "DecisionMaking")"><i class="fa fa-book"></i> <span class="nav-label">Decision Makings</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li class="@Html.IsSelected(controller:"DecisionMaking",action: "Index")"><a href="@Url.Action("Index", "DecisionMaking")">  <i class="fa fa-list"></i> List</a></li>
+                    <li class="@Html.IsSelected(controller:"DecisionMaking",action: "Create")"><a href="@Url.Action("Create", "DecisionMaking")"><i class="fa fa-plus"></i> Create</a></li>
+                    <li class="@Html.IsSelected(controller:"DecisionMaking",action: "Edit")"><a href="@Url.Action("Edit", "DecisionMaking")">    <i class="fa fa-edit"></i> Edit</a></li>
+                    <li class="@Html.IsSelected(controller:"DecisionMaking",action: "Delete")"><a href="@Url.Action("Delete", "DecisionMaking")"><i class="fa fa-trash"></i> Delete</a></li>
+                </ul>
+            </li>
+            <li class="@Html.IsSelected(controller:"FactorGroup")">
+                <a href="@Url.Action("Index", "FactorGroup")"><i class="fa fa-sitemap"></i> <span class="nav-label">Factor Group</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li class="@Html.IsSelected(controller:"FactorGroup",action: "Index")"><a href="@Url.Action("Index", "FactorGroup")">  <i class="fa fa-list"></i> List</a></li>
+                    <li class="@Html.IsSelected(controller:"FactorGroup",action: "Create")"><a href="@Url.Action("Create", "FactorGroup")"><i class="fa fa-plus"></i> Create</a></li>
+                    <li class="@Html.IsSelected(controller:"FactorGroup",action: "Edit")"><a href="@Url.Action("Edit", "FactorGroup")">    <i class="fa fa-edit"></i> Edit</a></li>
+                    <li class="@Html.IsSelected(controller:"FactorGroup",action: "Delete")"><a href="@Url.Action("Delete", "FactorGroup")"><i class="fa fa-trash"></i>Delete</a></li>
+                </ul>
+            </li>
+            <li class="@Html.IsSelected(controller:"FactorItem")">
+                <a href="@Url.Action("Index", "FactorItem")"><i class="fa fa-map-marker"></i> <span class="nav-label">Factor Item</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li class="@Html.IsSelected(controller:"FactorItem",action: "Index")"><a href="@Url.Action("Index", "FactorItem")">  <i class="fa fa-list"></i> List</a></li>
+                    <li class="@Html.IsSelected(controller:"FactorItem",action: "Create")"><a href="@Url.Action("Create", "FactorItem")"><i class="fa fa-plus"></i> Create</a></li>
+                    <li class="@Html.IsSelected(controller:"FactorItem",action: "Edit")"><a href="@Url.Action("Edit", "FactorItem")">    <i class="fa fa-edit"></i> Edit</a></li>
+                    <li class="@Html.IsSelected(controller:"FactorItem",action: "Delete")"><a href="@Url.Action("Delete", "FactorItem")"><i class="fa fa-trash"></i>Delete</a></li>
+                </ul>
+            </li>
+            <li class="@Html.IsSelected(controller:"Result",action:"Index")">
+                <a href="@Url.Action("Index", "Result")"><i class="fa fa-print"></i> <span class="nav-label">Results</span></a>
+            </li>
+            <li class="@Html.IsSelected(controller:"Linguistic",action:"Index")">
+                <a href="@Url.Action("Index", "Linguistic")"><i class="fa fa-language"></i> <span class="nav-label">Linguistic</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li class="@Html.IsSelected(controller:"Linguistic",action: "Triangular")"><a href="@Url.Action("Triangular", "Linguistic")">  <i class="fa fa-key"></i> Triangular</a></li>
+                    <li class="@Html.IsSelected(controller:"Linguistic",action: "It2hf")"><a href="@Url.Action("It2hf", "Linguistic")"><i class="fa fa-key"></i> It2hf</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>

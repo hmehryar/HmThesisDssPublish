@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Models.DependencyItem>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong> List of cluster items</strong>
+    </div>
+    <table class="table table-hover table-condensed">
+        <tr>
+
+            <th class=" col-md-1">
+                @Html.DisplayNameFor(model => model.EndFactorGroup.Name)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class=" col-md-1">
+                    @Html.DisplayFor(modelItem => item.EndFactorGroup.Name)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

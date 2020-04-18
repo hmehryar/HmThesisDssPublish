@@ -1,0 +1,123 @@
+﻿@model Models.FactorGroup
+@{
+    ViewBag.Title = "Edit Cluster";
+}
+<div id="factorItemsModal" class="modal fade in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id="factorItemsModalContent">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div id="dependencyItemsModal" class="modal fade in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id="dependencyItemsModalContent">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div id="dependencyFactorItemsModal" class="modal fade in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id="dependencyFactorItemsModalContent">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>
+                Edit Cluster
+            </h2>
+            <hr />
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(model => model.IsActive)
+                    @Html.HiddenFor(model => model.CreationDate)
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(model => model.DecisionMakingId)
+                    @* @Html.HiddenFor(model => model.IsPaid)*@
+
+                    <div class="form-group form-group-sm">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group form-group-sm">
+                        @Html.Label("MPM Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.DecisionMaking.Description, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.DecisionMaking.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    @*<div class="form-group form-group-sm">
+                            @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+
+                    @*<div class="form-group form-group-sm">
+                            @Html.LabelFor(model => model.Tax, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Tax, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Tax, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+                    <div class="form-group form-group-sm">
+                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-offset-2 col-md-10">
+                            @{Html.RenderAction("Index", "FactorItem", new { factorGroupId = Model.Id });}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-offset-2 col-md-10">
+                            @{Html.RenderAction("Index", "DependencyItem", new { factorGroupId = Model.Id });}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-offset-2 col-md-10">
+                            @{Html.RenderAction("Index", "DependencyFactorItem", new { factorGroupId = Model.Id });}
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+                                }
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/scripts/factorGroup.js"></script>
+}
